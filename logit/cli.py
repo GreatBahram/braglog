@@ -6,6 +6,7 @@ from click_default_group import DefaultGroup
 @click.group(
     cls=DefaultGroup,
     default="add",
+    default_if_no_args=True,
 )
 @click.version_option()
 def cli():
@@ -18,14 +19,18 @@ def cli():
 @cli.command()
 @click.argument(
     "message",
+    nargs=-1,
+    type=click.STRING,
     required=True,
 )
-# @click.option(
-#     "--date", "-d", default=datetime.today(), help="Specify the date for the log entry."
-# )
-# @click.option("--title", "-t", default="", help="Specify the date for the log entry.")
-def add(message: str):
-    print(message)
+@click.option(
+    "--date", "-d", default=datetime.today(), help="Specify the date for the log entry."
+)
+@click.option("--title", "-t", default="", help="Specify the date for the log entry.")
+def add(message: str, date):
+    message = " ".join(message)
+    click.echo(date)
+    click.echo(message)
     click.echo("Hello")
 
 
