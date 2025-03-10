@@ -2,6 +2,8 @@ import click
 from datetime import datetime
 from click_default_group import DefaultGroup
 
+from logit.models import ensure_db, db, db_path
+
 
 @click.group(
     cls=DefaultGroup,
@@ -28,6 +30,7 @@ def cli():
 )
 @click.option("--title", "-t", default="", help="Specify the date for the log entry.")
 def add(message: str, date):
+    ensure_db()
     message = " ".join(message)
     click.echo(date)
     click.echo(message)
@@ -49,3 +52,4 @@ def add(message: str, date):
 )
 def show():
     click.echo("Hello")
+    click.echo(db_path)
