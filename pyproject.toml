@@ -9,3 +9,7 @@ dependencies = [
     "click>=8.1.8",
     "peewee>=3.17.9",
 ]
+
+
+[project.scripts]
+logit = "logit.cli:cli"
