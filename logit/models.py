@@ -25,6 +25,11 @@ class LogEntry(Model):
         database = db
 
 
+tables = [
+    LogEntry,
+]
+
+
 def ensure_db():
     with db:
-        db.create_tables([LogEntry])
+        db.create_tables(tables)
