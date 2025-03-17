@@ -40,24 +40,6 @@ def add(message: str, date: datetime):
     log_entry.save()
 
 
-# @cli.command()
-# @click.option(
-#     "--since",
-#     "-s",
-#     default=datetime.today(),
-#     help="Specify the date for the log entry.",
-# )
-# @click.option(
-#     "--until",
-#     "-u",
-#     default=datetime.today(),
-#     help="Specify the date for the log entry.",
-# )
-# def show(since, until):
-#     click.echo("Hello")
-#     click.echo(db_path())
-
-
 @cli.command()
 def logs_path():
     click.echo(db_path())
