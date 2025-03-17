@@ -8,7 +8,7 @@ from logit.models import ensure_db, db_path, LogEntry
 @click.group(
     cls=DefaultGroup,
     default="add",
-    default_if_no_args=True,
+    default_if_no_args=False,
 )
 @click.version_option()
 def cli():

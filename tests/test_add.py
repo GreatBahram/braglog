@@ -42,3 +42,15 @@ def test_add_with_date(db):
             "life is good",
             date(year=2024, month=5, day=13),
         )
+
+
+def test_add_without_options_print_help_message(db):
+    runner = CliRunner()
+    with runner.isolated_filesystem():
+        default_command_result = runner.invoke(cli, [])
+        help_command_result = runner.invoke(cli, ["--help"])
+
+        assert default_command_result.exit_code == 0
+        assert help_command_result.exit_code == 0
+
+        assert default_command_result.output == help_command_result.output
