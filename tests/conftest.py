@@ -1,19 +1,8 @@
 import pytest
 
 
-# @pytest.fixture
-# def user_path(tmpdir):
-#     dir = tmpdir / "logit"
-#     dir.mkdir()
-#     return dir
-
-
-# @pytest.fixture
-# def logs_db(user_path):
-#     return sqlite_utils.Database(str(user_path / "logs.db"))
-
 from peewee import SqliteDatabase
-from logit import models
+from braglog import models
 
 
 @pytest.fixture

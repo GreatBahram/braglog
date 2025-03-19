@@ -1,8 +1,8 @@
 from datetime import date
 from click.testing import CliRunner
 
-from logit.cli import cli
-from logit import models
+from braglog.cli import cli
+from braglog import models
 
 
 def test_version():

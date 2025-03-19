@@ -5,7 +5,7 @@ import pathlib
 
 
 def user_dir() -> pathlib.Path:
-    app_dir = pathlib.Path(click.get_app_dir("logit"))
+    app_dir = pathlib.Path(click.get_app_dir("braglog"))
     app_dir.mkdir(exist_ok=True, parents=True)
     return app_dir
 
