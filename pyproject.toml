@@ -1,5 +1,5 @@
 [project]
-name = "logit"
+name = "braglog"
 version = "0.1.0"
 description = "A concise command-line tool for quickly logging daily tasks and milestones, ideal for personal and professional record-keeping."
 readme = "README.md"
@@ -12,7 +12,7 @@ dependencies = [
 
 
 [project.scripts]
-logit = "logit.cli:cli"
+braglog = "braglog.cli:cli"
 
 [project.optional-dependencies]
 dev = [

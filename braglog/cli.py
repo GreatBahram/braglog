@@ -2,7 +2,7 @@ import click
 from datetime import datetime
 from click_default_group import DefaultGroup
 
-from logit.models import ensure_db, db_path, LogEntry
+from braglog.models import ensure_db, db_path, LogEntry
 
 
 @click.group(
