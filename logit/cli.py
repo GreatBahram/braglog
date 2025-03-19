@@ -2,11 +2,13 @@ import click
 from datetime import datetime
 from click_default_group import DefaultGroup
 
+from logit.models import ensure_db, db_path, LogEntry
+
 
 @click.group(
     cls=DefaultGroup,
     default="add",
-    default_if_no_args=True,
+    default_if_no_args=False,
 )
 @click.version_option()
 def cli():
@@ -24,28 +26,20 @@ def cli():
     required=True,
 )
 @click.option(
-    "--date", "-d", default=datetime.today(), help="Specify the date for the log entry."
+    "--date",
+    "-d",
+    type=click.DateTime(formats=["%Y-%m-%d", "%Y/%m/%d"]),
+    default=datetime.today(),
+    help="Specify the date for the log entry.",
 )
-@click.option("--title", "-t", default="", help="Specify the date for the log entry.")
-def add(message: str, date):
+def add(message: str, date: datetime):
+    ensure_db()
     message = " ".join(message)
-    click.echo(date)
-    click.echo(message)
-    click.echo("Hello")
+
+    log_entry = LogEntry(message=message, log_date=date.date())
+    log_entry.save()
 
 
 @cli.command()
-@click.option(
-    "--since",
-    "-s",
-    default=datetime.today(),
-    help="Specify the date for the log entry.",
-)
-@click.option(
-    "--until",
-    "-u",
-    default=datetime.today(),
-    help="Specify the date for the log entry.",
-)
-def show():
-    click.echo("Hello")
+def logs_path():
+    click.echo(db_path())
