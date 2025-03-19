@@ -2,7 +2,7 @@
 ## Contributing
 To contribute to this tool, first checkout the code. Then create a new virtual environment:
 ```shell
-cd logit
+cd braglog
 python -m venv .venv
 source .venv/bin/activate
 ```
