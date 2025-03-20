@@ -8,6 +8,7 @@ dependencies = [
     "click-default-group>=1.2.4",
     "click>=8.1.8",
     "peewee>=3.17.9",
+    "dateparser>=1.2.1",
 ]
 
 [project.scripts]
