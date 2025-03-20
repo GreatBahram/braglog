@@ -10,7 +10,6 @@ dependencies = [
     "peewee>=3.17.9",
 ]
 
-
 [project.scripts]
 braglog = "braglog.cli:cli"
 
@@ -18,3 +17,9 @@ braglog = "braglog.cli:cli"
 dev = [
     "pytest>=8.3.5",
 ]
+
+[project.urls]
+Homepage = "https://github.com/greatbahram/braglog"
+Changelog = "https://github.com/greatbahram/braglog/releases"
+Issues = "https://github.com/greatbahram/braglog/issues"
+CI = "https://github.com/greatbahram/braglog/actions"
