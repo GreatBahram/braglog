@@ -54,3 +54,7 @@ Or if you are using [uv](https://docs.astral.sh/uv/):
 ```shell
 uv sync --extra dev
 ```
+To run the tests:
+```
+uv run pytest .
+```
