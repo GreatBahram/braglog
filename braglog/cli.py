@@ -1,7 +1,7 @@
 import click
-from datetime import datetime
+from datetime import datetime, date
 from click_default_group import DefaultGroup
-
+import dateparser
 from braglog.models import ensure_db, db_path, LogEntry
 
 
@@ -43,3 +43,58 @@ def add(message: str, date: datetime):
 @cli.command()
 def logs_path():
     click.echo(db_path())
+
+
+def parse_date(ctx, param, value: str | None) -> date | None:
+    if not value:
+        return None
+    parsed = dateparser.parse(value)
+
+    if parsed is None:
+        raise click.BadParameter(f"Cannot parse the date: {value}")
+
+    return parsed.date()
+
+
+@cli.command()
+@click.option(
+    "--contains",
+    "-c",
+    "text",
+    required=False,
+    help="Entries containing specific text.",
+)
+@click.option(
+    "--on",
+    callback=parse_date,
+    required=False,
+    help="Entries with a speicific date.",
+)
+@click.option(
+    "--since",
+    "-s",
+    callback=parse_date,
+    required=False,
+    help="Entries since a speicific date.",
+)
+@click.option(
+    "--until",
+    "-u",
+    callback=parse_date,
+    required=False,
+    help="Entries until a speicific date.",
+)
+def show(text: str | None, on: date | None, since: date | None, until: date | None):
+    entries = LogEntry.select()
+    if on and (since or until):
+        raise click.BadArgumentUsage("--on not allowed with --since|--until")
+    if text:
+        entries = entries.where(LogEntry.message.contains(text))
+    if on:
+        entries = entries.where(LogEntry.log_date == on)
+    if since:
+        entries = entries.where(LogEntry.log_date >= since)
+    if until:
+        entries = entries.where(LogEntry.log_date <= until)
+    for entry in entries:
+        click.echo(f"{entry.log_date.strftime('%Y-%m-%d')}: {entry.message}")
