@@ -5,7 +5,7 @@ Easily log and manage daily work achievements to boost transparency and producti
 I got this idea from [here](https://code.dblock.org/2020/09/01/keep-a-changelog-at-work.html). My main goal is to use this project as a playground. I want to record a series of videos where we collaboratively work on solving an issue by developing a new feature each time.
 
 ## To-Do List
-- [ ] Develop the `show` sub-command using a test-driven development (TDD) approach with options for `--contains`, `--from`, `--until`, and `--on`.
+- [x] Develop the `show` sub-command using a test-driven development (TDD) approach with options for `--contains`, `--from`, `--until`, and `--on`.
 - [ ] Publish the app using `uv`.
 - [ ] Implement the `export` functionality.
 - [ ] Introduce the Ruff code formatter.
