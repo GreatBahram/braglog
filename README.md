@@ -13,6 +13,32 @@ I got this idea from [here](https://code.dblock.org/2020/09/01/keep-a-changelog-
 - [ ] Add GitHub Actions to run test cases and check code formatting.
 - [ ] Set up GitHub Actions to upload the latest version to PyPI.
 
+## Usage
+
+For help, run:
+```bash
+braglog --help
+```
+You can also use:
+```bash
+python -m braglog --help
+```
+### Adding Work Achievements
+
+To log today's achievement:
+```bash
+braglog Fixed the authentication bug in login module
+```
+
+To log an achievement for a specific date:
+```bash
+braglog --date 2025-03-19 "Completed code review for PR #123"
+```
+
+To see the location of your logs file:
+```bash
+braglog logs-path
+```
 ## Contributing
 To contribute to this tool, first checkout the code. Then create a new virtual environment:
 ```shell
