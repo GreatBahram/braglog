@@ -39,6 +39,24 @@ To see the location of your logs file:
 ```bash
 braglog logs-path
 ```
+### Viewing Work Achievements
+
+View all entries or filter them:
+```bash
+# Show all entries
+braglog show
+
+# Filter by text
+braglog show --contains "bug fix"
+
+# Show entries for specific date
+braglog show --on "2025-03-19"
+
+# Quick manager meeting prep - show last 2 weeks of achievements
+braglog show -s "2 weeks ago"
+```
+> [!NOTE]
+> `--on` cannot be used with `--since` or `--until`
 ## Contributing
 To contribute to this tool, first checkout the code. Then create a new virtual environment:
 ```shell
