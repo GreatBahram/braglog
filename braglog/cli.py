@@ -96,5 +96,6 @@ def show(text: str | None, on: date | None, since: date | None, until: date | No
         entries = entries.where(LogEntry.log_date >= since)
     if until:
         entries = entries.where(LogEntry.log_date <= until)
-    for entry in entries:
+
+    for entry in entries.order_by(LogEntry.log_date.asc()):
         click.echo(f"{entry.log_date.strftime('%Y-%m-%d')}: {entry.message}")
