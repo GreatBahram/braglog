@@ -23,3 +23,7 @@ Homepage = "https://github.com/greatbahram/braglog"
 Changelog = "https://github.com/greatbahram/braglog/releases"
 Issues = "https://github.com/greatbahram/braglog/issues"
 CI = "https://github.com/greatbahram/braglog/actions"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
