@@ -1,5 +1,13 @@
 name: "Run test cases and formatter"
-on: [push, pull_request]
+on:
+    push:
+        paths:
+            - 'braglog/**'
+            - 'tests/**'
+    pull_request:
+        paths:
+            - 'braglog/**'
+            - 'tests/**'
 
 jobs:
     test:
