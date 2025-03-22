@@ -1,4 +1,4 @@
-name: "Run the test, linter, and formatter"
+name: "Run test cases and formatter"
 on: [push, pull_request]
 
 jobs:
@@ -13,8 +13,9 @@ jobs:
             - name: Install dependencies
               run: |
                 uv sync --extra dev
-            - name: run tests
-              run: uv pytest .
+            - name: Run tests
+              run: |
+                uv run pytest .
             - name: Run linter & formatter
               run: |
                 ruff check .
