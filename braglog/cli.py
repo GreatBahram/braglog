@@ -45,9 +45,12 @@ def logs_path():
     click.echo(db_path())
 
 
-def parse_date(ctx, param, value: str | None) -> date | None:
+def parse_date(
+    ctx: click.Context, param: click.Parameter, value: str | None
+) -> date | None:
     if not value:
         return None
+
     parsed = dateparser.parse(value)
 
     if parsed is None:
