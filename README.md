@@ -7,8 +7,8 @@ I got this idea from [here](https://code.dblock.org/2020/09/01/keep-a-changelog-
 ## To-Do List
 - [x] Develop the `show` sub-command using a test-driven development (TDD) approach with options for `--contains`, `--from`, `--until`, and `--on`.
 - [x] Publish the app using `uv`.
-- [ ] Introduce the Ruff code formatter.
-- [ ] Utilize pre-commit hooks.
+- [x] Introduce the Ruff code formatter.
+- [x] Utilize pre-commit hooks.
 - [ ] Add GitHub Actions to run test cases and check code formatting.
 - [ ] Set up GitHub Actions to upload the latest version to PyPI.
 - [ ] Implement the `export` functionality.
