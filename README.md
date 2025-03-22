@@ -76,3 +76,8 @@ To run the tests:
 ```
 uv run pytest .
 ```
+To help ensure consistent code quality that follows our guidelines, [pre-commit](https://pre-commit.com/install) may be used. We have git hooks defined which will execute before commit. To install the hooks:
+
+```shell
+pre-commit install
+```
