@@ -9,8 +9,8 @@ I got this idea from [here](https://code.dblock.org/2020/09/01/keep-a-changelog-
 - [x] Publish the app using `uv`.
 - [x] Introduce the Ruff code formatter.
 - [x] Utilize pre-commit hooks.
-- [ ] Add GitHub Actions to run test cases and check code formatting.
-- [ ] Set up GitHub Actions to upload the latest version to PyPI.
+- [x] Add GitHub Actions to run test cases and check code formatting.
+- [x] Set up GitHub Actions to upload the latest version to PyPI.
 - [ ] Implement the `export` functionality.
 
 ## Usage
