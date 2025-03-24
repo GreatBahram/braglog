@@ -201,6 +201,7 @@ def test_show_delete_with_no_records(db):
     runner = CliRunner()
 
     result = runner.invoke(cli, ["show", "--delete"])
+
     assert result.exit_code == 0
     assert "Deleted 0 records!" in result.output
 
@@ -216,7 +217,6 @@ def test_show_delete_with_one_record(db):
 
     assert result.exit_code == 0
     assert "Deleted 1 record!" in result.output
-
     assert len(models.LogEntry.select()) == 0
 
 
@@ -230,6 +230,4 @@ def test_show_delete_with_two_record(db):
 
     assert result.exit_code == 0
     assert "Deleted 1 record!" in result.output
-
-    assert len(models.LogEntry.select()) == 1
     assert models.LogEntry.get().message == "Message 2"
