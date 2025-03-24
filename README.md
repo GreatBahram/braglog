@@ -69,6 +69,12 @@ braglog show -s "2 weeks ago"
 ```
 > [!NOTE]
 > `--on` cannot be used with `--since` or `--until`
+### Delete Achievements
+
+For deleting records, simply use `--delete`:
+```bash
+braglog show --on today --delete
+```
 ## Contributing
 To contribute to this tool, first checkout the code. Then create a new virtual environment:
 ```shell
