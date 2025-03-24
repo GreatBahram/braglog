@@ -92,7 +92,6 @@ def parse_date(
     "-d",
     is_flag=True,
     default=False,
-    show_default=True,
     help="Delete filtered records.",
 )
 def show(
@@ -114,7 +113,7 @@ def show(
     if until:
         entries = entries.where(LogEntry.log_date <= until)
 
-    delete_count: int = 0
+    delete_count = 0
 
     for entry in entries.order_by(LogEntry.log_date.asc()):
         if not delete:
