@@ -71,7 +71,7 @@ braglog show -s "2 weeks ago"
 > `--on` cannot be used with `--since` or `--until`
 ### Delete Achievements
 
-View all entries or filter them:
+For deleting records, simply use `--delete`:
 ```bash
 braglog show --on today --delete
 ```
