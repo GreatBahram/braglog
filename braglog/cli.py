@@ -87,7 +87,21 @@ def parse_date(
     required=False,
     help="Entries until a speicific date.",
 )
-def show(text: str | None, on: date | None, since: date | None, until: date | None):
+@click.option(
+    "--delete",
+    "-d",
+    is_flag=True,
+    default=False,
+    show_default=True,
+    help="Delete filtered records.",
+)
+def show(
+    text: str | None,
+    on: date | None,
+    since: date | None,
+    until: date | None,
+    delete: bool = False,
+):
     entries = LogEntry.select()
     if on and (since or until):
         raise click.BadArgumentUsage("--on not allowed with --since|--until")
@@ -100,5 +114,18 @@ def show(text: str | None, on: date | None, since: date | None, until: date | No
     if until:
         entries = entries.where(LogEntry.log_date <= until)
 
+    delete_count: int = 0
+
     for entry in entries.order_by(LogEntry.log_date.asc()):
-        click.echo(f"{entry.log_date.strftime('%Y-%m-%d')}: {entry.message}")
+        if not delete:
+            click.echo(f"{entry.log_date.strftime('%Y-%m-%d')}: {entry.message}")
+        else:
+            preview = entry.message[:40] if len(entry.message) > 40 else entry.message
+            msg = f"Delete {preview!r}, are you sure?"
+
+            if click.confirm(msg, default=False):
+                entry.delete_instance()
+                delete_count += 1
+
+    if delete:
+        click.echo(f"Deleted {delete_count} record{'' if delete_count == 1 else 's'}!")
