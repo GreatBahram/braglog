@@ -231,3 +231,15 @@ def test_show_delete_with_two_record(db):
     assert result.exit_code == 0
     assert "Deleted 1 record!" in result.output
     assert models.LogEntry.get().message == "Message 2"
+
+
+def test_show_limit_rows(db):
+    runner = CliRunner()
+
+    models.LogEntry.create(message="Message 1", log_date=date.today())
+    models.LogEntry.create(message="Message 2", log_date=date.today())
+
+    result = runner.invoke(cli, ["show", "-n", "1"])
+
+    assert result.exit_code == 0
+    assert "Message 1" in result.output
