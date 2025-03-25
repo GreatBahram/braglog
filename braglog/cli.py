@@ -102,6 +102,13 @@ def parse_date(
     default=False,
     help="print the first n records.",
 )
+@click.option(
+    "--reverse",
+    "-r",
+    is_flag=True,
+    default=False,
+    help="Reverse the order of the displayed records.",
+)
 def show(
     text: str | None,
     on: date | None,
@@ -109,6 +116,7 @@ def show(
     until: date | None,
     delete: bool = False,
     count: int | None = None,
+    reverse: bool = False,
 ):
     entries = LogEntry.select()
     if on and (since or until):
@@ -127,7 +135,9 @@ def show(
 
     delete_count = 0
 
-    for entry in entries.order_by(LogEntry.log_date.asc()):
+    order = LogEntry.log_date.desc() if reverse else LogEntry.log_date.asc()
+
+    for entry in entries.order_by(order):
         if not delete:
             click.echo(f"{entry.log_date.strftime('%Y-%m-%d')}: {entry.message}")
         else:
