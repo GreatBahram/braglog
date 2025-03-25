@@ -243,3 +243,19 @@ def test_show_limit_rows(db):
 
     assert result.exit_code == 0
     assert "Message 1" in result.output
+
+
+def test_reverse_output_most_recent_first(db):
+    runner = CliRunner()
+
+    models.LogEntry.create(message="Message 1", log_date=date.today())
+    models.LogEntry.create(message="Message 2", log_date=date.today())
+
+    result = runner.invoke(cli, ["show", "--reverse"])
+
+    assert result.exit_code == 0
+
+    first, second = result.output.splitlines()
+
+    assert "Message 1" in first
+    assert "Message 2" in second
