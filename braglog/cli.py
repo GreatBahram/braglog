@@ -94,16 +94,26 @@ def parse_date(
     default=False,
     help="Delete filtered records.",
 )
+@click.option(
+    "--number",
+    "-n",
+    "count",
+    type=int,
+    default=False,
+    help="print the first n records.",
+)
 def show(
     text: str | None,
     on: date | None,
     since: date | None,
     until: date | None,
     delete: bool = False,
+    count: int | None = None,
 ):
     entries = LogEntry.select()
     if on and (since or until):
         raise click.BadArgumentUsage("--on not allowed with --since|--until")
+
     if text:
         entries = entries.where(LogEntry.message.contains(text))
     if on:
@@ -112,6 +122,8 @@ def show(
         entries = entries.where(LogEntry.log_date >= since)
     if until:
         entries = entries.where(LogEntry.log_date <= until)
+    if count:
+        entries = entries.limit(value=count)
 
     delete_count = 0
 
