@@ -99,3 +99,8 @@ To help ensure consistent code quality that follows our guidelines, [pre-commit]
 ```shell
 pre-commit install
 ```
+### Release process
+To release a new version:
+1. Update docs/changelog.md with the new changes.
+2. Update the version number in setup.py and run `uv sync`
+3. Create a GitHub release for the new version.
