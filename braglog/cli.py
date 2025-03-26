@@ -3,7 +3,7 @@ from datetime import datetime, date
 from click_default_group import DefaultGroup
 import dateparser
 from braglog.models import ensure_db, db_path, LogEntry
-from braglog.formatters import basic
+from braglog import formatters
 
 
 @click.group(
@@ -138,7 +138,7 @@ def show(
     entries = entries.order_by(order) if entries else entries
 
     if not delete:
-        formatted_resp = basic.BasicFormatter(entries=entries)
+        formatted_resp = formatters.BasicFormatter(entries=entries)
         click.echo(formatted_resp, nl=False)
     else:
         delete_count = 0
