@@ -34,6 +34,73 @@ TEMPLATE_NAV = """\
     </ul>
 </nav>"""
 
+STYLE = """\
+    <style>
+        :root {
+            --primary-color: #0366d6;
+            --bg-color: #f6f8fa;
+            --text-color: #24292e;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            background: var(--bg-color);
+        }
+        nav {
+            position: sticky;
+            top: 0;
+            background: white;
+            padding: 1rem;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+            margin-bottom: 2rem;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            background: #f1f8ff;
+            transition: background 0.2s;
+        }
+        nav a:hover {
+            background: #dbedff;
+        }
+        section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+            margin-bottom: 1.5rem;
+        }
+        h2 {
+            margin-top: 0;
+            color: var(--text-color);
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.5rem;
+        }
+        ul {
+            padding-left: 1.5rem;
+            margin: 1rem 0;
+        }
+        li {
+            margin: 0.5rem 0;
+        }
+    </style>
+"""
+
 
 class HTMLFormatter:
     log_format = "%Y-%m-%d"
@@ -67,74 +134,5 @@ class HTMLFormatter:
         ]
 
         return TEMPLATE_HTML.format(
-            style=self.style, navigation=navigation, content="\n".join(sections)
+            style=STYLE, navigation=navigation, content="\n".join(sections)
         )
-
-    @property
-    def style(self) -> str:
-        return """\
-        <style>
-            :root {
-                --primary-color: #0366d6;
-                --bg-color: #f6f8fa;
-                --text-color: #24292e;
-            }
-            body {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-                line-height: 1.6;
-                color: var(--text-color);
-                max-width: 800px;
-                margin: 2rem auto;
-                padding: 0 1rem;
-                background: var(--bg-color);
-            }
-            nav {
-                position: sticky;
-                top: 0;
-                background: white;
-                padding: 1rem;
-                border-radius: 6px;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-                margin-bottom: 2rem;
-            }
-            nav ul {
-                list-style: none;
-                padding: 0;
-                margin: 0;
-                display: flex;
-                flex-wrap: wrap;
-                gap: 0.5rem;
-            }
-            nav a {
-                color: var(--primary-color);
-                text-decoration: none;
-                padding: 0.5rem 1rem;
-                border-radius: 4px;
-                background: #f1f8ff;
-                transition: background 0.2s;
-            }
-            nav a:hover {
-                background: #dbedff;
-            }
-            section {
-                background: white;
-                padding: 1.5rem;
-                border-radius: 6px;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-                margin-bottom: 1.5rem;
-            }
-            h2 {
-                margin-top: 0;
-                color: var(--text-color);
-                border-bottom: 1px solid #eaecef;
-                padding-bottom: 0.5rem;
-            }
-            ul {
-                padding-left: 1.5rem;
-                margin: 1rem 0;
-            }
-            li {
-                margin: 0.5rem 0;
-            }
-        </style>
-    """
