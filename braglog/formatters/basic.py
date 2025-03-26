@@ -1,4 +1,4 @@
-from .models import LogEntry
+from ..models import LogEntry
 
 
 class BasicFormatter:
