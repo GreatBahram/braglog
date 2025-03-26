@@ -27,7 +27,7 @@ def test_show(db):
         result = runner.invoke(cli, ["show"])
 
         assert result.exit_code == 0
-        assert result.output == "\n".join(expected_output) + "\n"
+        assert result.output == "\n".join(expected_output)
 
 
 def test_show_contains(db):
@@ -51,7 +51,7 @@ def test_show_contains(db):
         result = runner.invoke(cli, ["show", "--contains", "fix"])
 
         assert result.exit_code == 0
-        assert result.output == "\n".join(expected_output) + "\n"
+        assert result.output == "\n".join(expected_output)
 
 
 def test_show_on_specific_date(db):
@@ -74,7 +74,7 @@ def test_show_on_specific_date(db):
         result = runner.invoke(cli, ["show", "--on", "2024-05-14"])
 
         assert result.exit_code == 0
-        assert result.output == "\n".join(expected_output) + "\n"
+        assert result.output == "\n".join(expected_output)
 
 
 def test_show_on_specific_date_relative(db):
@@ -96,7 +96,7 @@ def test_show_on_specific_date_relative(db):
         result = runner.invoke(cli, ["show", "--on", "yesterday"])
 
         assert result.exit_code == 0
-        assert result.output == "\n".join(expected_output) + "\n"
+        assert result.output == "\n".join(expected_output)
 
 
 def test_show_since(db):
@@ -123,7 +123,7 @@ def test_show_since(db):
         result = runner.invoke(cli, ["show", "--since", "yesterday"])
 
         assert result.exit_code == 0
-        assert result.output == "\n".join(expected_output) + "\n"
+        assert result.output == "\n".join(expected_output)
 
 
 def test_show_until(db):
@@ -150,7 +150,7 @@ def test_show_until(db):
         result = runner.invoke(cli, ["show", "--until", "yesterday"])
 
         assert result.exit_code == 0
-        assert result.output == "\n".join(expected_output) + "\n"
+        assert result.output == "\n".join(expected_output)
 
 
 def test_show_since_until(db):
@@ -183,7 +183,7 @@ def test_show_since_until(db):
         )
 
         assert result.exit_code == 0
-        assert result.output == "\n".join(expected_output) + "\n"
+        assert result.output == "\n".join(expected_output)
 
 
 def test_show_on_since_until_mutually_exclusive(db):

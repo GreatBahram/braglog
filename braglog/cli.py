@@ -3,6 +3,7 @@ from datetime import datetime, date
 from click_default_group import DefaultGroup
 import dateparser
 from braglog.models import ensure_db, db_path, LogEntry
+from braglog import formatter
 
 
 @click.group(
@@ -133,14 +134,15 @@ def show(
     if count:
         entries = entries.limit(value=count)
 
-    delete_count = 0
-
     order = LogEntry.log_date.desc() if reverse else LogEntry.log_date.asc()
+    entries = entries.order_by(order) if entries else entries
 
-    for entry in entries.order_by(order):
-        if not delete:
-            click.echo(f"{entry.log_date.strftime('%Y-%m-%d')}: {entry.message}")
-        else:
+    if not delete:
+        formatted_resp = formatter.BasicFormatter(entries=entries)
+        click.echo(formatted_resp, nl=False)
+    else:
+        delete_count = 0
+        for entry in entries:
             preview = entry.message[:40] if len(entry.message) > 40 else entry.message
             msg = f"Delete {preview!r}, are you sure?"
 
@@ -148,5 +150,4 @@ def show(
                 entry.delete_instance()
                 delete_count += 1
 
-    if delete:
         click.echo(f"Deleted {delete_count} record{'' if delete_count == 1 else 's'}!")
