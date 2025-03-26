@@ -127,12 +127,13 @@ class HTMLFormatter:
         return TEMPLATE_SECTION.format(date=date, achievements_list=achievements_list)
 
     def _render_navigation(self, dates: list[str]) -> str:
+        if not dates:
+            return ""
         nav_items = [f'<li><a href="#{date}">{date}</a></li>' for date in sorted(dates)]
         return TEMPLATE_NAV.format(nav_items="\n".join(nav_items))
 
     def __str__(self) -> str:
         entries_by_date = self._get_entries_by_date()
-
         navigation = self._render_navigation(list(entries_by_date.keys()))
 
         sections = [
