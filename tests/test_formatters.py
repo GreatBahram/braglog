@@ -1,7 +1,5 @@
-from braglog.formatters import BasicFormatter, HTMLFormatter
 from dataclasses import dataclass
 from datetime import date
-from textwrap import dedent
 from braglog import formatters
 
 
@@ -17,7 +15,7 @@ def test_basic_formatter():
         _LogEntry(message=f"Message {idx}", log_date=log_date) for idx in range(1, 5)
     ]
 
-    formatter_resp = BasicFormatter(entries=entries)
+    formatter_resp = formatters.BasicFormatter(entries=entries)
     assert str(formatter_resp).splitlines() == [
         "2025-05-14: Message 1",
         "2025-05-14: Message 2",
@@ -27,7 +25,7 @@ def test_basic_formatter():
 
 
 def test_basic_formatter_no_entries():
-    formatter_resp = BasicFormatter(entries=[])
+    formatter_resp = formatters.BasicFormatter(entries=[])
     assert str(formatter_resp) == ""
 
 
