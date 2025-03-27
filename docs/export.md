@@ -21,8 +21,9 @@ braglog show -f html > output.html
 firefox output.html # Or your preferred browser
 ```
 ![HTML Format Preview](assets/html_format.png)
-> **💡 Tip:** The HTML format is perfect for:
-> - Performance review preparation
-> - Portfolio showcasing
-> - Team achievements tracking
-> - Weekly/monthly progress reports
+**Tip:** The HTML format is perfect for:
+
+- Performance review preparation
+- Portfolio showcasing
+- Team achievements tracking
+- Weekly/monthly progress reports
