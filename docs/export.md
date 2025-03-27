@@ -16,7 +16,7 @@ The default format is 'basic', which displays the date followed by your accompli
 BragLog offers a polished HTML format that creates an interactive, modern webpage of your achievements.
 
 To generate and view the HTML report:
-```
+```shell
 braglog show -f html > output.html
 firefox output.html # Or your preferred browser
 ```
