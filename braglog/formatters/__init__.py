@@ -5,3 +5,9 @@ __all__ = [
     "BasicFormatter",
     "HTMLFormatter",
 ]
+
+
+FORMATTER_MAP = {
+    "basic": BasicFormatter,
+    "html": HTMLFormatter,
+}

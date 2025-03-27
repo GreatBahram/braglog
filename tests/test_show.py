@@ -259,3 +259,18 @@ def test_reverse_output_most_recent_first(db):
 
     assert "Message 1" in first
     assert "Message 2" in second
+
+
+def test_show_default_basic_formatter(db):
+    runner = CliRunner()
+
+    models.LogEntry.create(message="Message 1", log_date=date.today())
+    models.LogEntry.create(message="Message 2", log_date=date.today())
+
+    result1 = runner.invoke(cli, ["show", "--format", "basic"])
+    result2 = runner.invoke(cli, ["show"])
+
+    assert result1.exit_code == 0
+    assert result2.exit_code == 0
+
+    assert result1.output == result2.output

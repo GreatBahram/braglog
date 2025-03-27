@@ -110,6 +110,14 @@ def parse_date(
     default=False,
     help="Reverse the order of the displayed records.",
 )
+@click.option(
+    "--format",
+    "-f",
+    default="basic",
+    type=click.Choice(formatters.FORMATTER_MAP.keys(), case_sensitive=False),
+    show_default=True,
+    help="Specify the output format for displaying the records.",
+)
 def show(
     text: str | None,
     on: date | None,
@@ -118,6 +126,7 @@ def show(
     delete: bool = False,
     count: int | None = None,
     reverse: bool = False,
+    format: str = "basic",
 ):
     entries = LogEntry.select()
     if on and (since or until):
@@ -138,7 +147,8 @@ def show(
     entries = entries.order_by(order) if entries else entries
 
     if not delete:
-        formatted_resp = formatters.BasicFormatter(entries=entries)
+        fromatter = formatters.FORMATTER_MAP[format]
+        formatted_resp = str(fromatter(entries=entries))
         click.echo(formatted_resp, nl=False)
     else:
         delete_count = 0
