@@ -1,5 +1,7 @@
+import json
 from dataclasses import dataclass
 from datetime import date
+from textwrap import dedent
 
 from braglog import formatters
 
@@ -47,3 +49,30 @@ def test_html_formatter_one_day_multiple_achievements():
     formatter_resp = formatters.HTMLFormatter(entries=entries)
 
     assert str(formatter_resp).count("Message") == len(entries)
+
+
+def test_json_formatter_no_entries():
+    formatter_resp = formatters.JSONFormatter(entries=[])
+    expected = dedent("""\
+        {
+          "count": 0,
+          "entries": []
+        }""")
+    assert str(formatter_resp) == expected
+
+
+def test_json_formatter_one_day_multiple_achievements():
+    entries = [
+        _LogEntry(message="Message 1", log_date=date.today()),
+        _LogEntry(message="Message 2", log_date=date.today()),
+    ]
+    expected = {
+        "count": len(entries),
+        "entries": [
+            {"message": "Message 1", "date": date.today().strftime("%Y-%m-%d")},
+            {"message": "Message 2", "date": date.today().strftime("%Y-%m-%d")},
+        ],
+    }
+    formatter_resp = formatters.JSONFormatter(entries=entries)
+
+    assert json.loads(str(formatter_resp)) == expected
