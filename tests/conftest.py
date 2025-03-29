@@ -1,7 +1,6 @@
 import pytest
-
-
 from peewee import SqliteDatabase
+
 from braglog import models
 
 

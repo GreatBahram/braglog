@@ -1,8 +1,9 @@
 from datetime import date, timedelta
+
 from click.testing import CliRunner
 
-from braglog.cli import cli
 from braglog import models
+from braglog.cli import cli
 
 
 def test_show(db):
