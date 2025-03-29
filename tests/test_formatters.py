@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from datetime import date
+
 from braglog import formatters
 
 
@@ -45,4 +46,4 @@ def test_html_formatter_one_day_multiple_achievements():
 
     formatter_resp = formatters.HTMLFormatter(entries=entries)
 
-    assert str(formatter_resp).count("Message") == 4
+    assert str(formatter_resp).count("Message") == len(entries)

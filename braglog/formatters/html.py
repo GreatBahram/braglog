@@ -1,5 +1,5 @@
 from collections import defaultdict
-from typing import Iterable
+from collections.abc import Iterable
 
 from ..models import LogEntry
 
@@ -106,13 +106,13 @@ STYLE = """\
             font-size: 0.9rem;
         }
     </style>
-"""
+"""  # noqa: E501
 
 
 class HTMLFormatter:
     log_format = "%Y-%m-%d"
 
-    def __init__(self, entries: Iterable[LogEntry]):
+    def __init__(self, entries: Iterable[LogEntry]) -> None:
         self.entries = entries
 
     def _get_entries_by_date(self) -> dict[str, list[str]]:

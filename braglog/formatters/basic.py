@@ -4,7 +4,7 @@ from ..models import LogEntry
 class BasicFormatter:
     log_format = "%Y-%m-%d"
 
-    def __init__(self, entries: list[LogEntry]):
+    def __init__(self, entries: list[LogEntry]) -> None:
         self.entries = entries
 
     def __str__(self) -> str:
