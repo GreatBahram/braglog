@@ -1,9 +1,11 @@
+from datetime import date, datetime
+
 import click
-from datetime import datetime, date
-from click_default_group import DefaultGroup
 import dateparser
-from braglog.models import ensure_db, db_path, LogEntry
+from click_default_group import DefaultGroup
+
 from braglog import formatters
+from braglog.models import LogEntry, db_path, ensure_db
 
 
 @click.group(
@@ -12,11 +14,11 @@ from braglog import formatters
     default_if_no_args=False,
 )
 @click.version_option()
-def cli():
+def cli() -> None:
     """
-    Easily log and manage daily work achievements to boost transparency and productivity.
+    Easily log and manage daily work achievements to
+    boost transparency and productivity.
     """
-    pass
 
 
 @cli.command()
@@ -33,7 +35,7 @@ def cli():
     default=datetime.today(),
     help="Specify the date for the log entry.",
 )
-def add(message: str, date: datetime):
+def add(message: str, date: datetime) -> None:
     ensure_db()
     message = " ".join(message)
 
@@ -42,7 +44,7 @@ def add(message: str, date: datetime):
 
 
 @cli.command()
-def logs_path():
+def logs_path() -> None:
     click.echo(db_path())
 
 
@@ -118,7 +120,7 @@ def parse_date(
     show_default=True,
     help="Specify the output format for displaying the records.",
 )
-def show(
+def show(  # noqa: PLR0913
     text: str | None,
     on: date | None,
     since: date | None,
@@ -127,7 +129,7 @@ def show(
     count: int | None = None,
     reverse: bool = False,
     format: str = "basic",
-):
+) -> None:
     entries = LogEntry.select()
     if on and (since or until):
         raise click.BadArgumentUsage("--on not allowed with --since|--until")
@@ -153,7 +155,7 @@ def show(
     else:
         delete_count = 0
         for entry in entries:
-            preview = entry.message[:40] if len(entry.message) > 40 else entry.message
+            preview = entry.message[:40] if len(entry.message) > 40 else entry.message  # noqa: PLR2004
             msg = f"Delete {preview!r}, are you sure?"
 
             if click.confirm(msg, default=False):

@@ -1,7 +1,8 @@
-from peewee import SqliteDatabase, Model, DateField, TextField
-from datetime import date
-import click
 import pathlib
+from datetime import date
+
+import click
+from peewee import DateField, Model, SqliteDatabase, TextField
 
 
 def user_dir() -> pathlib.Path:
@@ -30,6 +31,6 @@ tables = [
 ]
 
 
-def ensure_db():
+def ensure_db() -> None:
     with db:
         db.create_tables(tables)
