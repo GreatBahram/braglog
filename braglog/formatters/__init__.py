@@ -11,4 +11,5 @@ __all__ = [
 FORMATTER_MAP = {
     "basic": BasicFormatter,
     "html": HTMLFormatter,
+    "json": JSONFormatter,
 }
