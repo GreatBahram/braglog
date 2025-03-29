@@ -27,3 +27,33 @@ firefox output.html # Or your preferred browser
 - Portfolio showcasing
 - Team achievements tracking
 - Weekly/monthly progress reports
+## JSON
+BragLog provides a structured JSON format perfect for integration with other tools and automated processing.
+
+To generate JSON output:
+```shell
+braglog show -f json
+```
+```json
+{
+  "count": 7,
+  "entries": [
+    {
+      "message": "Led architecture review resulting in successful microservices adoption",
+      "date": "2025-03-19"
+    },
+    {
+      "message": "Implemented automated deployment pipeline, cutting release time by 60%",
+      "date": "2025-03-29"
+    }
+    {
+      "message": "Delivered tech talk on GraphQL best practices to 50+ engineers",
+      "date": "2025-03-29"
+    },
+    {
+      "message": "Resolved critical production issue, preventing K revenue loss",
+      "date": "2025-03-29"
+    }
+  ]
+}%
+```
