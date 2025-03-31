@@ -137,7 +137,10 @@ def show(  # noqa: PLR0913,PLR0912
     format: str = "basic",
     edit: bool = False,
 ) -> None:
+    ensure_db()
+
     entries = LogEntry.select()
+
     if on and (since or until):
         raise click.BadArgumentUsage("--on not allowed with --since|--until")
 

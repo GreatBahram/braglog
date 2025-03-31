@@ -22,6 +22,16 @@ To help ensure consistent code quality that follows our guidelines, [pre-commit]
 ```shell
 pre-commit install
 ```
+## Environment Variables
+The application uses the following environment variable:
+
+- **`BRAGLOG_CONFIG_DIR`**: Specifies the directory where the application's configuration and database files are stored. If not set, the default directory will be used (typically a platform-specific application directory).
+
+To set this environment variable, use the following command:
+
+```shell
+export BRAGLOG_CONFIG_DIR=.
+```
 ## Release process
 To release a new version:
 1. Update docs/changelog.md with the new changes.
