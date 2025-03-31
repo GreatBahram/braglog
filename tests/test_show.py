@@ -1,4 +1,5 @@
 from datetime import date, timedelta
+from unittest import mock
 
 from click.testing import CliRunner
 
@@ -275,3 +276,22 @@ def test_show_default_basic_formatter(db):
     assert result2.exit_code == 0
 
     assert result1.output == result2.output
+
+
+def test_edit_option(db):
+    runner = CliRunner()
+
+    models.LogEntry.create(message="Message 1", log_date=date.today())
+    models.LogEntry.create(message="Message 2", log_date=date.today())
+
+    with mock.patch("click.edit") as mock_edit:
+        # don't change the first message; update the second one
+        mock_edit.side_effect = [None, "Updated Message 2"]
+
+        result = runner.invoke(cli, ["show", "--edit"])
+
+        assert [entry.message for entry in models.LogEntry.select()] == [
+            "Message 1",
+            "Updated Message 2",
+        ]
+    assert result.exit_code == 0
