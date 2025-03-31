@@ -41,3 +41,12 @@ For deleting records, simply use `--delete`:
 ```bash
 braglog show --on today --delete
 ```
+
+## Editing Achievements
+
+To edit existing entries interactively:
+```bash
+# Edit all entries
+braglog show --edit
+```
+> **NOTE**: The editor used is determined by your `EDITOR` environment variable (typically vim, nano, etc)
