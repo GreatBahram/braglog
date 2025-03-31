@@ -120,7 +120,13 @@ def parse_date(
     show_default=True,
     help="Specify the output format for displaying the records.",
 )
-def show(  # noqa: PLR0913
+@click.option(
+    "--edit",
+    "-e",
+    is_flag=True,
+    help="Edit the filtered records interactively.",
+)
+def show(  # noqa: PLR0913,PLR0912
     text: str | None,
     on: date | None,
     since: date | None,
@@ -129,6 +135,7 @@ def show(  # noqa: PLR0913
     count: int | None = None,
     reverse: bool = False,
     format: str = "basic",
+    edit: bool = False,
 ) -> None:
     entries = LogEntry.select()
     if on and (since or until):
@@ -147,7 +154,12 @@ def show(  # noqa: PLR0913
 
     order = LogEntry.log_date.desc() if reverse else LogEntry.log_date.asc()
     entries = entries.order_by(order) if entries else entries
-
+    if edit:
+        for entry in entries:
+            message = click.edit(entry.message)
+            if message is not None:
+                entry.message = message.rstrip("\n")
+                entry.save()
     if not delete:
         fromatter = formatters.FORMATTER_MAP[format]
         formatted_resp = str(fromatter(entries=entries))
