@@ -8,6 +8,20 @@ from braglog import formatters
 from braglog.models import LogEntry, db_path, ensure_db
 
 
+def parse_date(
+    ctx: click.Context, param: click.Parameter, value: str | None
+) -> date | None:
+    if not value:
+        return None
+
+    parsed = dateparser.parse(value)
+
+    if parsed is None:
+        raise click.BadParameter(f"Cannot parse the date: {value}")
+
+    return parsed.date()
+
+
 @click.group(
     cls=DefaultGroup,
     default="add",
@@ -31,35 +45,21 @@ def cli() -> None:
 @click.option(
     "--date",
     "-d",
-    type=click.DateTime(formats=["%Y-%m-%d", "%Y/%m/%d"]),
+    callback=parse_date,
     default=datetime.today(),
     help="Specify the date for the log entry.",
 )
-def add(message: str, date: datetime) -> None:
+def add(message: str, date: date) -> None:
     ensure_db()
     message = " ".join(message)
 
-    log_entry = LogEntry(message=message, log_date=date.date())
+    log_entry = LogEntry(message=message, log_date=date)
     log_entry.save()
 
 
 @cli.command()
 def logs_path() -> None:
     click.echo(db_path())
-
-
-def parse_date(
-    ctx: click.Context, param: click.Parameter, value: str | None
-) -> date | None:
-    if not value:
-        return None
-
-    parsed = dateparser.parse(value)
-
-    if parsed is None:
-        raise click.BadParameter(f"Cannot parse the date: {value}")
-
-    return parsed.date()
 
 
 @cli.command()
