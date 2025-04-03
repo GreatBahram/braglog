@@ -45,6 +45,23 @@ def test_add_with_date(db):
         )
 
 
+def test_add_with_date_relative(db):
+    runner = CliRunner()
+    with runner.isolated_filesystem():
+        result = runner.invoke(cli, ["life is good", "-d", "today"])
+
+        assert result.exit_code == 0
+
+        entries = models.LogEntry.select()
+        assert len(entries) == 1
+
+        log_entry = entries.first()
+        assert (log_entry.message, log_entry.log_date) == (
+            "life is good",
+            date.today(),
+        )
+
+
 def test_add_without_options_print_help_message(db):
     runner = CliRunner()
     with runner.isolated_filesystem():
