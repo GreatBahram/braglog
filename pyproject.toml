@@ -1,6 +1,6 @@
 [project]
 name = "braglog"
-version = "0.4.1"
+version = "0.4.2"
 description = "A concise command-line tool for quickly logging daily tasks and milestones, ideal for personal and professional record-keeping."
 readme = "README.md"
 requires-python = ">=3.12"
