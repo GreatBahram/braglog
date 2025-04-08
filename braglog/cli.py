@@ -157,13 +157,29 @@ def show(  # noqa: PLR0913,PLR0912
 
     order = LogEntry.log_date.desc() if reverse else LogEntry.log_date.asc()
     entries = entries.order_by(order) if entries else entries
+
     if edit:
         for entry in entries:
-            message = click.edit(entry.message)
-            if message is not None:
-                entry.message = message.rstrip("\n")
+            text = f"{entry.log_date.strftime('%Y-%m-%d')}: {entry.message}"
+            text = click.edit(text)
+            if text is not None:
+                try:
+                    date, message = text.split(":", maxsplit=1)
+                except ValueError:
+                    raise click.ClickException("Error: Unable to parse the input")
+
+                try:
+                    log_date = datetime.strptime(date, "%Y-%m-%d")
+                except ValueError:
+                    raise click.ClickException(
+                        "Unable to parse the date field."
+                        " Ensure it is in 'YYYY-MM-DD' format."
+                    )
+
+                entry.message = message.lstrip().rstrip("\n")
+                entry.log_date = log_date
                 entry.save()
-    if not delete:
+    elif not delete:
         fromatter = formatters.FORMATTER_MAP[format]
         formatted_resp = str(fromatter(entries=entries))
         click.echo(formatted_resp, nl=False)

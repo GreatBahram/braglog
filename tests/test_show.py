@@ -286,12 +286,14 @@ def test_edit_option(db):
 
     with mock.patch("click.edit") as mock_edit:
         # don't change the first message; update the second one
-        mock_edit.side_effect = [None, "Updated Message 2"]
+        mock_edit.side_effect = [None, "2024-12-30: Updated Message 2"]
 
         result = runner.invoke(cli, ["show", "--edit"])
 
-        assert [entry.message for entry in models.LogEntry.select()] == [
-            "Message 1",
-            "Updated Message 2",
+        assert [
+            (entry.log_date, entry.message) for entry in models.LogEntry.select()
+        ] == [
+            (date.today(), "Message 1"),
+            (date(2024, 12, 30), "Updated Message 2"),
         ]
     assert result.exit_code == 0
