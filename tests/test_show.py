@@ -1,4 +1,4 @@
-from datetime import date, timedelta, datetime
+from datetime import date, timedelta
 from unittest import mock
 
 from click.testing import CliRunner
