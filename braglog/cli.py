@@ -72,6 +72,7 @@ def logs_path() -> None:
 )
 @click.option(
     "--on",
+    "-o",
     callback=parse_date,
     required=False,
     help="Entries with a speicific date.",
