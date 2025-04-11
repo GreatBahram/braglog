@@ -76,3 +76,24 @@ def test_json_formatter_one_day_multiple_achievements():
     formatter_resp = formatters.JSONFormatter(entries=entries)
 
     assert json.loads(str(formatter_resp)) == expected
+
+
+def test_foldable_html_formatter_no_entries():
+    formatter_resp = formatters.FodableHTMLFormatter(entries=[])
+    expected = formatters.foldable_html.TEMPLATE_HTML.format(
+        style=formatters.foldable_html.STYLE,
+        content="",
+        script=formatters.foldable_html.SCRIPT,
+    )
+    assert str(formatter_resp) == expected
+
+
+def test_foldable_html_formatter_one_day_multiple_achievements():
+    entries = [
+        _LogEntry(message=f"Message {idx}", log_date=date.today())
+        for idx in range(1, 5)
+    ]
+
+    formatter_resp = formatters.FodableHTMLFormatter(entries=entries)
+
+    assert str(formatter_resp).count("Message") == len(entries)

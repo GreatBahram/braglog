@@ -57,3 +57,18 @@ braglog show -f json
   ]
 }%
 ```
+
+## FHTML (Foldable HTML)
+BragLog offers a collapsible HTML format that organises your achievements hierarchically by year and month, making it perfect for reviewing longer time periods. It includes a dark mode toggle for comfortable viewing in any environment.
+
+To generate and view the foldable HTML report:
+```shell
+braglog show -f fhtml > output.html
+firefox output.html # Or your preferred browser
+```
+![HTML Format Preview](![Foldable HTML Image](assets/fhtml.png))
+
+**Tip:** The FHTML format is perfect for:
+
+- Annual performance reviews
+- Visualizing long-term accomplishment patterns
