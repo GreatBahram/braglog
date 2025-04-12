@@ -97,3 +97,28 @@ def test_foldable_html_formatter_one_day_multiple_achievements():
     formatter_resp = formatters.FodableHTMLFormatter(entries=entries)
 
     assert str(formatter_resp).count("Message") == len(entries)
+
+
+def test_markdown_formatter_no_entries():
+    formatter_resp = formatters.MarkdownFormatter(entries=[])
+    expected = formatters.MarkdownFormatter.footer
+    assert str(formatter_resp) == expected
+
+
+def test_markdown_formatter_one_day_multiple_achievements():
+    entries = [
+        _LogEntry(message=f"Message {idx}", log_date=date.today())
+        for idx in range(1, 5)
+    ]
+    expected = [
+        f"# {date.today().year}",
+        f"## {date.today().strftime('%B')}",
+        f"- {date.today().strftime('%Y-%m-%d')}",
+        "    - Message 1",
+        "    - Message 2",
+        "    - Message 3",
+        "    - Message 4" + formatters.MarkdownFormatter.footer,
+    ]
+    formatter_resp = str(formatters.MarkdownFormatter(entries=entries))
+
+    assert formatter_resp == "\n".join(expected)
