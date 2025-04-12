@@ -8,7 +8,7 @@ site_description: >-
 # Repository
 repo_name: greatbahram/braglog
 repo_url: https://github.com/greatbahram/braglog/
-
+edit_uri: edit/main/docs/
 # Copyright
 copyright: Copyright &copy; 2025 -  Bahram Aghaei
 
