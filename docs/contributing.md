@@ -35,9 +35,12 @@ export BRAGLOG_CONFIG_DIR=.
 ## Release process
 To release a new version:
 
-1. Update docs/changelog.md with the new changes.
-2. Update the version number in `setup.py` and run `uv sync`
-3. Create a GitHub release for the new version.
+1. Create a new branch like `v0.5.0`
+2. Update `docs/changelog.md` with the new changes.
+3. Update the version number in `setup.py` and run `uv sync`.
+4. Create a git tag: `git tag v0.5.0`.
+5. Create a GitHub release for the new version using the tag
+
 
 ## Documentation
 The documentation is built using [MkDocs Material](https://squidfunk.github.io/mkdocs-material/).
