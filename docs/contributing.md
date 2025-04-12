@@ -34,9 +34,18 @@ export BRAGLOG_CONFIG_DIR=.
 ```
 ## Release process
 To release a new version:
+
 1. Update docs/changelog.md with the new changes.
-2. Update the version number in setup.py and run `uv sync`
+2. Update the version number in `setup.py` and run `uv sync`
 3. Create a GitHub release for the new version.
 
 ## Documentation
-[TODO]
+The documentation is built using [MkDocs Material](https://squidfunk.github.io/mkdocs-material/).
+
+### Setting up documentation locally
+1. Make sure you've installed the development dependencies as mentioned above.
+2. Run the following command to start a local documentation server:
+
+```shell
+mkdocs serve
+```

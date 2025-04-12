@@ -1,6 +1,6 @@
 # BragLog
 [![GitHub repo](https://img.shields.io/badge/github-repo-green)](https://github.com/greatbahram/braglog)
-[![PyPI](https://img.shields.io/pypi/v/llm.svg)](https://pypi.org/project/llm/)
+[![PyPI](https://img.shields.io/pypi/v/braglog.svg)](https://pypi.org/project/braglog/)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/greatbahram/braglog/blob/main/LICENSE)
 
 
