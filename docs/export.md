@@ -66,9 +66,21 @@ To generate and view the foldable HTML report:
 braglog show -f fhtml > output.html
 firefox output.html # Or your preferred browser
 ```
-![HTML Format Preview](![Foldable HTML Image](assets/fhtml.png))
+![Foldable HTML Image](assets/fhtml.png)
 
 **Tip:** The FHTML format is perfect for:
 
 - Annual performance reviews
 - Visualizing long-term accomplishment patterns
+
+## Markdown
+BragLog generates clean, structured Markdown that organises your accomplishments hierarchically by year, month, and day.
+
+![Markdown Image](assets/markdown.png)
+
+To generate and view the Markdown report:
+```shell
+braglog show -f md > output.md
+braglog show -f md | rich - -m
+# open in your preferred markdown editor
+```
