@@ -160,6 +160,8 @@ def show(  # noqa: PLR0913,PLR0912
     entries = entries.order_by(order) if entries else entries
 
     if edit:
+        update_count = 0
+
         for entry in entries:
             text = f"{entry.log_date.strftime('%Y-%m-%d')}: {entry.message}"
             text = click.edit(text)
@@ -180,6 +182,10 @@ def show(  # noqa: PLR0913,PLR0912
                 entry.message = message.lstrip().rstrip("\n")
                 entry.log_date = log_date
                 entry.save()
+
+                update_count += 1
+
+        click.echo(f"Updated {update_count} record{'' if update_count == 1 else 's'}!")
     elif not delete:
         fromatter = formatters.FORMATTER_MAP[format]
         formatted_resp = str(fromatter(entries=entries))
