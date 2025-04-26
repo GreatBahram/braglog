@@ -1,8 +1,12 @@
 # Changelog
+## 0.5.1 (2025-04-26)
+- Print the number of edited records at the end of edit procedure.
+
 ## 0.5.0 (2025-04-12)
 - Support `-o` option to make it easier to retrieve logs on a specific day
 - Add foldable html Formatter (`-f fhtml`)
 - Add Markdown Formatter (`-f md`)
+
 ## 0.4.2 (2025-04-08)
 - the `--edit` option now support modifying the date of a record.
 
