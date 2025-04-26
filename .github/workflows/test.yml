@@ -4,19 +4,26 @@ on:
         paths:
             - 'braglog/**'
             - 'tests/**'
+            - '.github/workflows/**'
     pull_request:
         paths:
             - 'braglog/**'
             - 'tests/**'
+            - '.github/workflows/**'
 
 jobs:
     test:
-        runs-on: ubuntu-latest
+        runs-on: ${{ matrix.os }}
+        strategy:
+          matrix:
+            python-version: ["3.12"]
+            os: [ubuntu-latest, macos-latest, windows-latest]
         steps:
             - uses: actions/checkout@v4
-            - uses: actions/setup-python@v5
+            - name: Set up Python ${{ matrix.python-version }}
+              uses: actions/setup-python@v5
               with:
-                python-version-file: ".python-version"
+                python-version: ${{ matrix.python-version }}
             - uses: astral-sh/setup-uv@v6
             - name: Install dependencies
               run: |
