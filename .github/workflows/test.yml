@@ -4,10 +4,12 @@ on:
         paths:
             - 'braglog/**'
             - 'tests/**'
+            - '.github/workflows/**'
     pull_request:
         paths:
             - 'braglog/**'
             - 'tests/**'
+            - '.github/workflows/**'
 
 jobs:
     test:
