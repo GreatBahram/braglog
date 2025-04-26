@@ -10,7 +10,7 @@ braglog Fixed the authentication bug in login module
 
 To log an achievement for a specific date:
 ```bash
-braglog --date 2025-03-19 "Completed code review for PR #123"
+braglog "Completed code review for PR #123" --date 2025-03-19 
 ```
 
 To see the location of your logs file:
