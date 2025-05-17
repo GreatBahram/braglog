@@ -1,10 +1,8 @@
 name: "Run test cases and formatter"
 on:
     push:
-        paths:
-            - 'braglog/**'
-            - 'tests/**'
-            - '.github/workflows/**'
+      branches:
+        - main
     pull_request:
         paths:
             - 'braglog/**'
